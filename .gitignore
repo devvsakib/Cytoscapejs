@@ -22,8 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-./src/App.jsx
-./src/Appd.jsx
-./src/Appd2.jsx
-./src/dem1.js
-./src/Sem2.jsx
