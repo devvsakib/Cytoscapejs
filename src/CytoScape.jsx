@@ -7,7 +7,7 @@ const App = () => {
     <div>
         <h1 className='py-2 text-center'>Cytoscape</h1>
         <Graph />
-        <TreeView />
+        {/* <TreeView /> */}
     </div>
   )
 }
