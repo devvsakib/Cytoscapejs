@@ -16,13 +16,15 @@ const Graph = () => {
     const [selectedNodeLabel, setSelectedNodeLabel] = useState('');
     const [secondSelect, setSecondSelect] = useState('');
     const [currentParentNode, setCurrentParentNode] = useState('Internet');
+    const [parentNodeForB, setParentNodeForB] = useState('Internet'); // Maintain parent node for "B"
+
     useEffect(() => {
         // Initialize Cytoscape
         cy.current = cytoscape({
             container: ref.current,
             elements: {
                 nodes: [
-                    { data: { id: 'Internet', label: 'Internet' } }, // Root node
+                    { data: { id: 'Internet', label: 'Internet' } }
                 ],
                 edges: [],
             },
@@ -68,8 +70,8 @@ const Graph = () => {
 
     }, []);
 
-    const handleAddNode = (value, parentNode) => {
-        value == "B" && setSelectedNodeLabel(value);
+    const handleAddNode = (value) => {
+        value === "B" && setSelectedNodeLabel(value);
         if (!cy.current) return;
 
         // Check if a node label is valid and already selected
@@ -80,7 +82,6 @@ const Graph = () => {
             const selectedOptionImageUrl = optionImages[value];
             const newNode = {
                 data: {
-                    group: 'nodes',
                     id: newNodeId,
                     label: value,
                     backgroundColor: 'transparent',
@@ -88,9 +89,19 @@ const Graph = () => {
                     'background-fit': 'cover',
                 },
             };
-            cy.current.add(newNode);
-            console.log({ data: { source: parentNode, target: newNodeId } });
-            cy.current.add({ data: { source: parentNode, target: newNodeId } });
+
+            if (value === 'B') {
+                cy.current.add(newNode);
+                cy.current.add({ data: { source: 'Internet', target: newNodeId } });
+                setParentNodeForB(newNodeId);
+            } else if (parentNodeForB === 'Internet') {
+                cy.current.add(newNode);
+                cy.current.add({ data: { source: 'Internet', target: newNodeId } });
+            } else {
+                cy.current.add(newNode);
+                cy.current.add({ data: { source: parentNodeForB, target: newNodeId } });
+            }
+
             cy.current.layout({
                 name: 'cose',
                 spacingFactor: 0.2,
@@ -105,19 +116,23 @@ const Graph = () => {
                 <select
                     className='px-2 py-1 border border-gray-300 rounded-md'
                     value={selectedNodeLabel}
-                    onChange={(e) => handleAddNode(e.target.value, "Internet")}
+                    onChange={(e) => handleAddNode(e.target.value)}
                 >
                     <option value=''>Select a node label</option>
-                    <option value='A'>Vite</option>
-                    <option value='B'>React</option>
+                    <option value='A'>A</option>
+                    <option value='B'>B</option>
+                    <option value='C'>C</option>
                 </select>
                 {selectedNodeLabel === "B" && (
                     <select
                         className='px-2 py-1 border border-gray-300 rounded-md'
                         value={secondSelect}
-                        onChange={(e) => handleAddNode(e.target.value, "B")}
+                        onChange={(e) => {
+                            setSecondSelect(e.target.value);
+                            handleAddNode(e.target.value);
+                        }}
                     >
-                        <option value=''>Select a node label</option>
+                        <option value=''>{secondSelect || "B Node"}</option>
                         <option value='F'>F</option>
                         <option value='T'>T</option>
                     </select>
