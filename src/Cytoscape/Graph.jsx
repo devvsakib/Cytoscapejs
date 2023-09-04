@@ -16,11 +16,12 @@ const Graph = () => {
                 {
                     selector: 'node',
                     style: {
-                        width: 15,
-                        height: 15,
+                        width: 9,
+                        height: 9,
                         label: 'data(label)',
                         'font-size': '10px',
                         'background-fit': 'cover',
+                        backgroundColor: 'transparent !important',
                         'overlay-opacity': 0,
                     },
                 },
