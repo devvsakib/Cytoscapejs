@@ -1,11 +1,12 @@
-// src/Graph.js
 import React, { useEffect, useRef, useState } from 'react';
 import cytoscape from 'cytoscape';
 
 const optionImages = {
     'A': '/vite.svg',
     'B': '/react.svg',
+    'T': '/react.svg',
     'C': '/vite.svg',
+    'F': '/vite.svg',
     'D': '/react.svg',
 };
 
@@ -13,8 +14,8 @@ const Graph = () => {
     const ref = useRef(null);
     const cy = useRef(null);
     const [selectedNodeLabel, setSelectedNodeLabel] = useState('');
-    const selectedOptionImageUrl = optionImages[selectedNodeLabel];
-
+    const [secondSelect, setSecondSelect] = useState('');
+    const [currentParentNode, setCurrentParentNode] = useState('Internet');
     useEffect(() => {
         // Initialize Cytoscape
         cy.current = cytoscape({
@@ -26,17 +27,18 @@ const Graph = () => {
                 edges: [],
             },
             style: [
-                // Styling for nodes and edges (you can customize this)
                 {
                     selector: 'node',
                     style: {
                         width: 15,
                         height: 15,
                         label: 'data(label)',
-                        backgroundColor: 'transparent',
-                        "font-size": "10px",
-                        'background-image': node => node.data('background-image') || "url('/vite.svg')",
+                        'background-opacity': 0,
+                        'font-size': '10px',
+                        'background-image': node => node.data('background-image') || "url('https://js.cytoscape.org/img/cytoscape-logo.png')",
+                        'background-size': 'contain',
                         'background-fit': 'cover',
+                        'overlay-opacity': 0,
                     },
                 },
                 {
@@ -50,67 +52,78 @@ const Graph = () => {
                     },
                 },
             ],
-            motionBlur: false,
-            minZoom: 0.2,
-            zoom: .4,
-            maxZoom: 5,
+            zoom: 0.2,
+            minZoom: 1,
+            maxZoom: 3,
+            wheelSensitivity: 0.2,
         });
 
-        cy.current.on('tap', 'node', (e) => {
-            const node = e.target;
-            console.log('Node tapped: ' + node.id());
+        cy.current.on('click', 'node', (event) => {
+            const node = event.target;
+            node.addClass('faded');
+            console.log(node.roots([currentParentNode]));
         });
-        cy.current.layout({
-            name: 'grid',
-            spacingFactor: 0.2,
-            nodeSpacing: 20,
-        }).run();
+
+        cy.current.layout({ name: 'cose' });
+
     }, []);
 
-    const handleAddNode = () => {
+    const handleAddNode = (value, parentNode) => {
+        value == "B" && setSelectedNodeLabel(value);
         if (!cy.current) return;
+
         // Check if a node label is valid and already selected
-        const isValidLabel = selectedNodeLabel && optionImages[selectedNodeLabel];
+        const isValidLabel = value && optionImages[value];
 
         if (isValidLabel) {
             const newNodeId = `n${cy.current.nodes().length}`;
-            const selectedOptionImageUrl = optionImages[selectedNodeLabel]; // Calculate the image URL here
+            const selectedOptionImageUrl = optionImages[value];
             const newNode = {
                 data: {
+                    group: 'nodes',
                     id: newNodeId,
-                    label: selectedNodeLabel,
+                    label: value,
                     backgroundColor: 'transparent',
                     'background-image': selectedOptionImageUrl,
                     'background-fit': 'cover',
                 },
             };
             cy.current.add(newNode);
-            cy.current.add({ data: { source: 'Internet', target: newNodeId } });
+            console.log({ data: { source: parentNode, target: newNodeId } });
+            cy.current.add({ data: { source: parentNode, target: newNodeId } });
             cy.current.layout({
                 name: 'cose',
                 spacingFactor: 0.2,
                 nodeSpacing: 10,
             }).run();
-
-            setSelectedNodeLabel('');
         }
     };
+
     return (
         <div>
-            <div>
+            <div className='px-2 pb-2'>
                 <select
+                    className='px-2 py-1 border border-gray-300 rounded-md'
                     value={selectedNodeLabel}
-                    onChange={(e) => setSelectedNodeLabel(e.target.value)}
+                    onChange={(e) => handleAddNode(e.target.value, "Internet")}
                 >
                     <option value=''>Select a node label</option>
                     <option value='A'>Vite</option>
                     <option value='B'>React</option>
-                    <option value='C'>Node C</option>
-                    <option value='D'>Node D</option>
                 </select>
-                <button onClick={handleAddNode} className=''>Add Node</button>
+                {selectedNodeLabel === "B" && (
+                    <select
+                        className='px-2 py-1 border border-gray-300 rounded-md'
+                        value={secondSelect}
+                        onChange={(e) => handleAddNode(e.target.value, "B")}
+                    >
+                        <option value=''>Select a node label</option>
+                        <option value='F'>F</option>
+                        <option value='T'>T</option>
+                    </select>
+                )}
             </div>
-            <div className='w-[95vw] h-[100vh] mx-auto' ref={ref}></div>
+            <div className='mx-2 h-[80vh]' ref={ref}></div>
         </div>
     );
 };
