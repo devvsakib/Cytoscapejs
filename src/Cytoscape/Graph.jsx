@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cytoscape from 'cytoscape';
+import dagre from 'cytoscape-dagre';
 import cola from 'cytoscape-cola';
 import fcose from 'cytoscape-fcose'; // Import the fcose layout
 cytoscape.use(fcose);
+cytoscape.use(dagre);
+cytoscape.use(cola);
 import { dummyData } from './DummyData';
 
 const Graph = () => {
@@ -38,10 +41,6 @@ const Graph = () => {
 
     }
 
-
-    // const cytoscapeData = ;
-    // console.log(cytoscapeData);
-
     useEffect(() => {
         const cy = cytoscape({
             container: ref.current,
@@ -76,6 +75,10 @@ const Graph = () => {
             minZoom: 1,
             maxZoom: 2,
             wheelSensitivity: 0.2,
+        });
+
+        cy.on('click', 'node', function (evt) {
+            console.log('node clicked', evt.target.id());
         });
 
         cy.layout({
