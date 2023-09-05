@@ -57,7 +57,7 @@ const Graph = () => {
                         'font-size': '10px',
                         'background-fit': 'contain',
                         'background-image': node => `/${node.data('icon')}`,
-                        backgroundColor: '#fff',
+                        // backgroundColor: '#fff',
                         'border-radius': '0',
                         'overlay-opacity': 0,
                     },
