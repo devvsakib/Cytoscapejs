@@ -207,6 +207,7 @@ export const dummyData = {
                 akas: [
                     "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a"
                 ],
+                icon: "aws_ec2_instance.svg",
                 ami_launch_index: 0,
                 architecture: "x86_64",
                 arn: "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a",
@@ -388,6 +389,7 @@ export const dummyData = {
                     "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a"
                 ],
                 ami_launch_index: 0,
+                icon: "aws_ec2_instance.svg",
                 architecture: "x86_64",
                 arn: "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a",
                 block_device_mappings: [
@@ -568,6 +570,7 @@ export const dummyData = {
                     "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a"
                 ],
                 ami_launch_index: 0,
+                icon: "aws_ec2_instance.svg",
                 architecture: "x86_64",
                 arn: "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a",
                 block_device_mappings: [
@@ -748,6 +751,7 @@ export const dummyData = {
                     "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a"
                 ],
                 ami_launch_index: 0,
+                icon: "aws_ec2_instance.svg",
                 architecture: "x86_64",
                 arn: "arn:aws:ec2:ap-south-1:036376663423:instance/i-03d0d53d18199274a",
                 block_device_mappings: [
@@ -923,6 +927,7 @@ export const dummyData = {
             data: {
                 id: 'internet',
                 label: 'Internet',
+                icon: "internet.svg"
             },
         },
     ],

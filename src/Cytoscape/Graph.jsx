@@ -8,6 +8,7 @@ import { dummyData } from './DummyData';
 
 const Graph = () => {
     const ref = useRef(null);
+    const baseUrl = "http://localhost:5173/"
     useEffect(() => {
         const cy = cytoscape({
             container: ref.current,
@@ -16,12 +17,15 @@ const Graph = () => {
                 {
                     selector: 'node',
                     style: {
-                        width: 9,
-                        height: 9,
+                        width: 15,
+                        height: 15,
                         label: 'data(label)',
                         'font-size': '10px',
                         'background-fit': 'cover',
                         backgroundColor: 'transparent !important',
+                        'background-image': node => `${baseUrl}${node.data('icon')}`,
+                        'background-color': '#fff',
+                        'border-radius': '0',
                         'overlay-opacity': 0,
                     },
                 },
