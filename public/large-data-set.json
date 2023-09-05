@@ -423,7 +423,7 @@
         {
             "id": "f80cb6bd825b4a09a778e4e944dce5d4",
             "source": "i-082011b14e2429240",
-            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-officedesk/03b01450adc8d251"
+            "target": "internet"
         },
         {
             "id": "a17fde3cfa3b4226ae3d09656d785bc7",

@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cytoscape from 'cytoscape';
 import cola from 'cytoscape-cola';
-cytoscape.use(cola);
+import fcose from 'cytoscape-fcose'; // Import the fcose layout
+cytoscape.use(fcose);
 import { dummyData } from './DummyData';
-
-
 
 const Graph = () => {
     const ref = useRef(null);
@@ -80,11 +79,8 @@ const Graph = () => {
         });
 
         cy.layout({
-            name: 'cola', avoidOverlap: true,
-            nodeSpacing: 30,
-            rankSpacing: 6,
-            edgeLengthVal: 45,
-            animate: false,
+            name: 'fcose',
+            avoidOverlap: true,
 
         }).run();
     }, [jsonData]);
