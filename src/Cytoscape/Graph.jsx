@@ -20,7 +20,7 @@ const Graph = () => {
 
     function jsontocystocape(jsonData) {
         const nodes = jsonData.nodes.map(node => {
-            const nodeData = { id: node._id, label: node.label };
+            const nodeData = { id: node._id, label: node.label, group: "nodes" };
             for (const key in node) {
                 if (key !== '_id' && key !== 'label') {
                     nodeData[key] = node[key];
@@ -30,12 +30,12 @@ const Graph = () => {
         });
 
         const edges = jsonData.edges.map(edge => {
-            const edgeData = { source: edge.source, target: edge.target };
+            const edgeData = { source: edge.source, target: edge.target, group: "edges" };
             return { data: edgeData };
         });
+        
+        setJsonData([...nodes, ...edges])
 
-        setJsonData({ nodes, edges })
-        console.log({ nodes, edges })
     }
 
 
@@ -80,7 +80,20 @@ const Graph = () => {
 
         cy.layout({
             name: 'fcose',
-            avoidOverlap: true,
+            gravityRange: 3.8,
+            nodeRepulsion: 5500,
+            idealEdgeLength: 100,
+            edgeElasticity: 0.45,
+            nestingFactor: 0.1,
+            gravityCompound: 1.0,
+            gravityRangeCompound: 1.5,
+            initialEnergyOnIncremental: 0.3,
+            coolingFactor: 0.3,
+            tile: true,
+            tilingPaddingVertical: 10,
+            tilingPaddingHorizontal: 10,
+            tilingPaddingRatio: 0.02,
+
 
         }).run();
     }, [jsonData]);
