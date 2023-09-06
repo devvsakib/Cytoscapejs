@@ -82,7 +82,9 @@ const Graph = () => {
         });
 
         cy.layout({
-            name: 'fcose'
+            name: 'fcose',
+            // nodeDimensionsIncludeLabels: true,
+            nodeRepulsion: 20000,
         }).run();
     }, [jsonData]);
 
