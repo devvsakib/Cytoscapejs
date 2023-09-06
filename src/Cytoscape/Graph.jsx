@@ -36,7 +36,7 @@ const Graph = () => {
             const edgeData = { source: edge.source, target: edge.target, group: "edges" };
             return { data: edgeData };
         });
-        
+
         setJsonData([...nodes, ...edges])
 
     }
@@ -82,22 +82,7 @@ const Graph = () => {
         });
 
         cy.layout({
-            name: 'fcose',
-            gravityRange: 3.8,
-            nodeRepulsion: 5500,
-            idealEdgeLength: 100,
-            edgeElasticity: 0.45,
-            nestingFactor: 0.1,
-            gravityCompound: 1.0,
-            gravityRangeCompound: 1.5,
-            initialEnergyOnIncremental: 0.3,
-            coolingFactor: 0.3,
-            tile: true,
-            tilingPaddingVertical: 10,
-            tilingPaddingHorizontal: 10,
-            tilingPaddingRatio: 0.02,
-
-
+            name: 'fcose'
         }).run();
     }, [jsonData]);
 
