@@ -6,7 +6,7 @@ import fcose from 'cytoscape-fcose'; // Import the fcose layout
 cytoscape.use(fcose);
 cytoscape.use(dagre);
 cytoscape.use(cola);
-import { dummyData } from './DummyData';
+// import { dummyData } from './DummyData';
 
 const Graph = () => {
     const ref = useRef(null);
@@ -68,6 +68,7 @@ const Graph = () => {
                         targetArrowColor: '#3bebeb',
                         targetArrowShape: 'triangle',
                         curveStyle: 'bezier',
+                        'overlay-opacity': 0,
                     },
                 },
             ],
