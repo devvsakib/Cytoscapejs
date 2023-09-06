@@ -78,11 +78,13 @@ const Graph = () => {
             wheelSensitivity: 0.2,
         });
         cy.nodes().forEach(node => {
-            const size = Math.random() * 30;
-                node.style({
-                    width: size,
-                    height: size,
-                });
+            const hasChild = node.connectedEdges().length > 4;
+            const size = Math.random() * (hasChild ? 20 : 1) + 30;
+            node.style({
+                width: size,
+                height: size,
+                backgroundColor: hasChild ? "orange" : "green",
+            });
         });
         cy.on('click', 'node', function (evt) {
             console.log('node clicked', evt.target.id());
