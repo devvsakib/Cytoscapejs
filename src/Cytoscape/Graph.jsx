@@ -93,6 +93,7 @@ const Graph = () => {
         cy.layout({
             name: 'fcose',
             // nodeDimensionsIncludeLabels: true,
+            avoidOverlap: true,
             nodeRepulsion: 20000,
         }).run();
     }, [jsonData]);
