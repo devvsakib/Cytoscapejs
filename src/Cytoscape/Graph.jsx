@@ -49,8 +49,8 @@ const Graph = () => {
                 {
                     selector: 'node',
                     style: {
-                        width: 15,
-                        height: 15,
+                        width: Math.random() * 120 + 30,
+                        height: Math.random() * 120 + 30,
                         label: 'data(label)',
                         'font-size': '10px',
                         'background-fit': 'contain',
@@ -77,7 +77,13 @@ const Graph = () => {
             maxZoom: 2,
             wheelSensitivity: 0.2,
         });
-
+        cy.nodes().forEach(node => {
+            const size = Math.random() * 30;
+                node.style({
+                    width: size,
+                    height: size,
+                });
+        });
         cy.on('click', 'node', function (evt) {
             console.log('node clicked', evt.target.id());
         });
