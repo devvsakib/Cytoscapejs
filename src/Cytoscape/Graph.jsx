@@ -123,6 +123,20 @@ const Graph = () => {
     const handleClicked = e => {
         console.log(e.target.id());
     };
+    const handleZooming = e => {
+            e.preventDefault();
+            if (e.originalEvent.deltaY > 0) {
+                cy.zoom({
+                    level: cy.zoom() - 0.1,
+                    renderedPosition: e.renderedPosition
+                });
+            } else {
+                cy.zoom({
+                    level: cy.zoom() + 0.1,
+                    renderedPosition: e.renderedPosition
+                });
+            }
+        }
     return (
         <div>
             {
@@ -130,10 +144,12 @@ const Graph = () => {
                 <CytoscapeComponent
                     cy={(cy) => {
                         cy.on("click", handleClicked);
+                        // zooming sensivity to 0.1
+                        cy.on('wheel', handleZooming);
                     }}
                     elements={data}
                     maxZoom={1.5}
-                    minZoom={0.5}
+                    minZoom={0.1}
                     layout={layouts["fcose"]}
                     className='mx-2 h-[80vh]'
                     stylesheet={cytoStyles}
