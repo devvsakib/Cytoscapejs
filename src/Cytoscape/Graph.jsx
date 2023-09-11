@@ -70,7 +70,6 @@ const Graph = () => {
         fcose: {
             name: "fcose",
             animate: false,
-            avoidOverlap: true,
             nodeDimensionsIncludeLabels: true,
             edgeElasticity: 0.3,
             wheelSensitivity: .1,
@@ -133,6 +132,8 @@ const Graph = () => {
                         cy.on("click", handleClicked);
                     }}
                     elements={data}
+                    maxZoom={1.5}
+                    minZoom={0.5}
                     layout={layouts["fcose"]}
                     className='mx-2 h-[80vh]'
                     stylesheet={cytoStyles}

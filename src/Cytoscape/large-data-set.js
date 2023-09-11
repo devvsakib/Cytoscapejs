@@ -747,6 +747,7 @@ export const dummyData = {
             "customer_owned_ipv4_pool": null,
             "dns_name": "internal-k8s-esmsintegrationsi-650d30856e-97060939.ap-south-1.elb.amazonaws.com",
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme/f561d81088db9c16",
             "ip_address_type": "ipv4",
             "load_balancer_attributes": [
                 {
@@ -1101,6 +1102,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-sprint-portal/0f4159f1010b78f8",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1147,6 +1149,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-s3/e6f05e0d31497d5a",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1193,6 +1196,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-dashboard/ee87ed0e906ba824",
+            "parent": "i-02b47925c032270f9",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -1253,6 +1257,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-portal/16f8a225ae8b35c5",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1345,6 +1350,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-preprod-services-api/6c7b07d8bcb39dc0",
+            "parent": "i-02b47925c032270f9",            
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -1451,6 +1457,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-preprod-s3/4e705faf411ddb8c",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1497,6 +1504,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme/f561d81088db9c16",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1557,6 +1565,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-preprod-vilweb/e52026427a778dc5",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -1603,6 +1612,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-download-web/be0ed5b0de8a278b",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -1695,6 +1705,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-grene-dashboard/8b8295c8910523ed",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -1755,6 +1766,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme-preprod/53c6294f3dbdca00",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -1815,6 +1827,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-management/9422b062332d0171",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -1888,6 +1901,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-api/b16d3277afecb6bb",
+            "parent": "i-08d28d9118323e957",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -1948,6 +1962,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-preprod-vildashboard/a31f4b2999e7097c",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -1994,6 +2009,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-s3/518644117fa594c2",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -2040,6 +2056,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-grene-management/0b3cdcba40c1a35b",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2100,6 +2117,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-web/7bf12813986c7551",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2219,6 +2237,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-sprint-api/1cc21bd3baf9b90d",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -2265,6 +2284,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 2,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/k8s-argocd-argocdse-34f4a75c10/e9fa15f3861ca93e",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5"
             ],
@@ -2338,6 +2358,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2484,6 +2505,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-grene-web/42424f26055a8cb6",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2544,6 +2566,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-dashboard/3d37e42595f4b50a",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2617,6 +2640,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-officedesk-web/6d96759d195a0568",
+            "parent": "i-082011b14e2429240",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -2723,6 +2747,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-greneos-web2/1b66b72722c44d6c",
+            "parent": "i-02b47925c032270f9",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -2783,6 +2808,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-officedesk/109292e945b33860",
+            "parent": "i-02b47925c032270f9",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -2843,6 +2869,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-dashboard/3ea842be78f00d33",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -2916,6 +2943,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme-staging/c2b40031f15f7ca7",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3049,6 +3077,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 2,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/k8s-monitori-kubeprom-ad5a52d3a3/b9b1eedaa8bb7d37",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5"
             ],
@@ -3122,6 +3151,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-services-api/c56762781fe5d372",
+            "parent": "i-082011b14e2429240",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3228,6 +3258,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-greneos-web/cace7d00c3e4bae5",
+            "parent": "i-02b47925c032270f9",            
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3407,6 +3438,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-greneos-office/7e24ae9aee5122b5",
+            "parent": "i-02b47925c032270f9",            
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3467,6 +3499,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-demo-grene-office/59698ca7f10c4ce3",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
             ],
@@ -3527,6 +3560,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-sts/016421f9d0709231",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3572,7 +3606,8 @@ export const dummyData = {
             "health_check_protocol": "HTTP",
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
-            "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-dashboard/a4ea378c2033eac8",
+            "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-dashboard/a4ea378c2033eac8", 
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3706,6 +3741,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-greneos-web/7d7f4461a065c986",
+            "parent": "i-082011b14e2429240",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3766,6 +3802,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 6,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-staging-socket/ac86eb6d9618a59b",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -3858,6 +3895,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-officedesk/03b01450adc8d251",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -3918,6 +3956,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 15,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-services-pam-api/d85c23945485f739",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -3964,6 +4003,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-grid/25962acf797d324d",
+            "parent": "i-082011b14e2429240",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -4070,6 +4110,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-greneos-web2/9c7abf4c86b30667",
+            "parent": "i-082011b14e2429240",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -4203,6 +4244,8 @@ export const dummyData = {
             "health_check_timeout_seconds": 15,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-services-portal/3a05736ed1be81fc",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
+
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -4368,6 +4411,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 15,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-services-api/66eb143d543d529f",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
             ],
@@ -4441,6 +4485,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-preprod-officedesk-web/9f46c92901baa9a3",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -4501,6 +4546,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/tg-new-staging-greneos-office/adcf4abe91acdf8f",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
             ],
@@ -4963,6 +5009,7 @@ export const dummyData = {
             "iam_instance_profile_arn": "arn:aws:iam::430506864995:instance-profile/CodeDeployDesker-EC2-Instance-Profile",
             "iam_instance_profile_id": "AIPAJ2CCGV2NSEQK2UROI",
             "id": "i-0f51d7365a6377aa9",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-services-api/66eb143d543d529f",
             "image_id": "ami-0af1fd8107be9333f",
             "instance_id": "i-0f51d7365a6377aa9",
             "instance_initiated_shutdown_behavior": "stop",
@@ -5403,6 +5450,7 @@ export const dummyData = {
             "iam_instance_profile_arn": null,
             "iam_instance_profile_id": null,
             "id": "i-08d28d9118323e957",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
             "image_id": "ami-02857028ccddd88fa",
             "instance_id": "i-08d28d9118323e957",
             "instance_initiated_shutdown_behavior": "stop",
@@ -5619,6 +5667,7 @@ export const dummyData = {
             "iam_instance_profile_arn": "arn:aws:iam::430506864995:instance-profile/CodeDeployDesker-EC2-Instance-Profile",
             "iam_instance_profile_id": "AIPAJ2CCGV2NSEQK2UROI",
             "id": "i-0bf03496b6f49586d",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-services-api/66eb143d543d529f",
             "image_id": "ami-0af1fd8107be9333f",
             "instance_id": "i-0bf03496b6f49586d",
             "instance_initiated_shutdown_behavior": "stop",
@@ -5834,6 +5883,7 @@ export const dummyData = {
             "iam_instance_profile_arn": null,
             "iam_instance_profile_id": null,
             "id": "i-0603b832ae36f8fa9",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme/f561d81088db9c16",
             "image_id": "ami-06a0b4e3b7eb7a300",
             "instance_id": "i-0603b832ae36f8fa9",
             "instance_initiated_shutdown_behavior": "stop",
@@ -6261,6 +6311,7 @@ export const dummyData = {
             "iam_instance_profile_arn": "arn:aws:iam::430506864995:instance-profile/AccessRole",
             "iam_instance_profile_id": "AIPAIHLH3ERWNURQD67OU",
             "id": "i-0eaf8754513b9b004",
+            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "image_id": "ami-09cbd9943cebdd51c",
             "instance_id": "i-0eaf8754513b9b004",
             "instance_initiated_shutdown_behavior": "stop",
