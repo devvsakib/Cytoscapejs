@@ -81,8 +81,7 @@ const Graph = () => {
             selector: 'edge',
             style: {
                 width: 1,
-                lineColor: '#3bebeb',
-                targetArrowColor: '#3bebeb',
+                // lineColor: '#3beb2b',
                 targetArrowShape: 'triangle',
                 curveStyle: 'bezier',
                 'overlay-opacity': 0,
