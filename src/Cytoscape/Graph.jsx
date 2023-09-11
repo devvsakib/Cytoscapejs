@@ -1,29 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
+import CytoscapeComponent from "react-cytoscapejs";
 import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import cola from 'cytoscape-cola';
-import fcose from 'cytoscape-fcose'; // Import the fcose layout
+import fcose from 'cytoscape-fcose';
 cytoscape.use(fcose);
 cytoscape.use(dagre);
 cytoscape.use(cola);
+// import { dummyData } from './ld';
 // import { dummyData } from './DummyData';
+import { dummyData } from './large-data-set';
 
 const Graph = () => {
-    const ref = useRef(null);
     // const iconBaseUrl = "http://localhost:5173/"
 
-    const [jsonData, setJsonData] = useState(null)
-    useEffect(() => {
-        fetch('/large-data-set.json')
-            .then(res => res.json())
-            .then(data => {
-                jsontocystocape(data)
-            })
-    }, [])
-
+    const [data, setData] = useState(null)
     function jsontocystocape(jsonData) {
         const nodes = jsonData.nodes.map(node => {
-            const nodeData = { id: node._id, label: node.label, group: "nodes" };
+            const nodeData = { id: node._id, label: node.label };
             for (const key in node) {
                 if (key !== '_id' && key !== 'label') {
                     nodeData[key] = node[key];
@@ -31,76 +25,120 @@ const Graph = () => {
             }
             return { data: nodeData };
         });
-
         const edges = jsonData.edges.map(edge => {
-            const edgeData = { source: edge.source, target: edge.target, group: "edges" };
+            const edgeData = { source: edge.source, target: edge.target };
+            
             return { data: edgeData };
         });
+        // add parent node, this dta has 4 parent node with parentId property
+        const parentNodes = jsonData.nodes.filter(node => node.parentId);
+        parentNodes.forEach(node => {
+            const parentNode = {
+                data: {
+                    id: node._id,
+                    label: node.label,
+                    parentId: node.parentId
+                }
+            };
+            nodes.push(parentNode);
+        });
+        // add parent edge
 
-        setJsonData([...nodes, ...edges])
-
+        setData([...nodes, ...edges, ...parentNodes])
     }
-
     useEffect(() => {
-        const cy = cytoscape({
-            container: ref.current,
-            elements: jsonData,
-            style: [
-                {
-                    selector: 'node',
-                    style: {
-                        width: Math.random() * 120 + 30,
-                        height: Math.random() * 120 + 30,
-                        label: 'data(label)',
-                        'font-size': '10px',
-                        'background-fit': 'contain',
-                        'background-image': node => `/${node.data('icon')}`,
-                        // backgroundColor: '#fff',
-                        'border-radius': '0',
-                        'overlay-opacity': 0,
-                    },
-                },
-                {
-                    selector: 'edge',
-                    style: {
-                        width: 1,
-                        lineColor: '#3bebeb',
-                        targetArrowColor: '#3bebeb',
-                        targetArrowShape: 'triangle',
-                        curveStyle: 'bezier',
-                        'overlay-opacity': 0,
-                    },
-                },
-            ],
-            zoom: 0.2,
-            minZoom: 1,
-            maxZoom: 2,
-            wheelSensitivity: 0.2,
-        });
-        cy.nodes().forEach(node => {
-            const hasChild = node.connectedEdges().length > 4;
-            const size = Math.random() * (hasChild ? 20 : 1) + 30;
-            node.style({
-                width: size,
-                height: size,
-                backgroundColor: hasChild ? "orange" : "green",
-            });
-        });
-        cy.on('click', 'node', function (evt) {
-            console.log('node clicked', evt.target.id());
-        });
+        jsontocystocape(dummyData)
+    }, [])
 
-        cy.layout({
-            name: 'fcose',
-            // nodeDimensionsIncludeLabels: true,
+    const layouts = {
+        breadthfirst: {
+            name: "breadthfirst"
+        },
+        cose: {
+            name: "cose",
+            animate: false
+        },
+        cola: {
+            name: "cola",
+            maxSimulationTime: 500,
+            edgeLength: 70
+        },
+        dagre: {
+            name: "dagre",
             avoidOverlap: true,
-            nodeRepulsion: 20000,
-        }).run();
-    }, [jsonData]);
-
+        },
+        fcose: {
+            name: "fcose",
+            animate: false,
+            avoidOverlap: true,
+            nodeDimensionsIncludeLabels: true,
+            edgeElasticity: 0.3,
+            wheelSensitivity: .1,
+        }
+    };
+    
+    const cytoStyles = [
+        {
+            selector: 'edge',
+            style: {
+                width: 1,
+                lineColor: '#3bebeb',
+                targetArrowColor: '#3bebeb',
+                targetArrowShape: 'triangle',
+                curveStyle: 'bezier',
+                'overlay-opacity': 0,
+                "target-arrow-shape": "triangle",
+                "curve-style": "unbundled-bezier"
+            },
+        },
+        {
+            selector: 'node:selected',
+            style: {
+                'background-color': '#F08080',
+                'border-color': 'red'
+            }
+        },
+        {
+            selector: 'edge:selected',
+            style: {
+                'line-color': '#F08080'
+            }
+        },
+        {
+            selector: "node",
+            style: {
+                "background-color": "red",
+                label: "data(label)",
+                'border-radius': '0',
+                'overlay-opacity': 0,
+            }
+        },
+        {
+            selector: ":parent",
+            style: {
+                "background-opacity": 0.2,
+                "background-color": "green"
+            }
+        }
+    ]
+    const handleClicked = e => {
+        console.log(e.target.id());
+    };
     return (
         <div>
-            <div className='mx-2 h-[80vh]' ref={ref}></div>
+            {
+                data &&
+                <CytoscapeComponent
+                    cy={(cy) => {
+                        cy.on("click", handleClicked);
+                    }}
+                    elements={data}
+                    layout={layouts["fcose"]}
+                    className='mx-2 h-[80vh]'
+                    stylesheet={cytoStyles}
+                />
+            }
+            {/* <div className='mx-2 h-[80vh]' ref={ref}></div> */}
         </div>
     );
 };

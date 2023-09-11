@@ -1,4 +1,4 @@
-{
+export const dummyData = {
     "edges": [
         {
             "id": "d1838b12681f494792a7dca1459cd2f9",
