@@ -27,7 +27,7 @@ const Graph = () => {
         });
         const edges = jsonData.edges.map(edge => {
             const edgeData = { source: edge.source, target: edge.target };
-            
+
             return { data: edgeData };
         });
         // add parent node, this dta has 4 parent node with parentId property
@@ -75,7 +75,10 @@ const Graph = () => {
             wheelSensitivity: .1,
         }
     };
-    
+    const getRandomWidth = () => {
+        // Generate a random width between, for example, 20 and 100
+        return Math.random() * 30
+    };
     const cytoStyles = [
         {
             selector: 'edge',
@@ -108,7 +111,7 @@ const Graph = () => {
                 "background-color": "red",
                 label: "data(label)",
                 'border-radius': '0',
-                'overlay-opacity': 0,
+                'overlay-opacity': 0
             }
         },
         {
@@ -123,19 +126,19 @@ const Graph = () => {
         console.log(e.target.id());
     };
     const handleZooming = e => {
-            e.preventDefault();
-            if (e.originalEvent.deltaY > 0) {
-                cy.zoom({
-                    level: cy.zoom() - 0.1,
-                    renderedPosition: e.renderedPosition
-                });
-            } else {
-                cy.zoom({
-                    level: cy.zoom() + 0.1,
-                    renderedPosition: e.renderedPosition
-                });
-            }
+        e.preventDefault();
+        if (e.originalEvent.deltaY > 0) {
+            cy.zoom({
+                level: cy.zoom() - 0.1,
+                renderedPosition: e.renderedPosition
+            });
+        } else {
+            cy.zoom({
+                level: cy.zoom() + 0.1,
+                renderedPosition: e.renderedPosition
+            });
         }
+    }
     return (
         <div>
             {
@@ -145,6 +148,15 @@ const Graph = () => {
                         cy.on("click", handleClicked);
                         // zooming sensivity to 0.1
                         cy.on('wheel', handleZooming);
+                        cy.nodes().forEach((node) => {
+                            const hasChild = node.connectedEdges().length > 4;
+                            const size = Math.random() * (hasChild ? 10 : 20) + 30;
+                            node.style({
+                                width: size,
+                                height: size,
+                                backgroundColor: hasChild ? "orange" : "green",
+                            });
+                        })
                     }}
                     elements={data}
                     maxZoom={1.5}
