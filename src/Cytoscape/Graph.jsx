@@ -155,7 +155,7 @@ const Graph = () => {
                                     if (node.data("label") == "ec2 application load balancer" && cy.nodes(':child').style('display', 'none')) {
                                         return "/aws_ec2_application_load_balancer.svg"
                                     }
-                                    if (node.data("label") == "ec2 instance" && node.isParent()) {
+                                    if (node.data("label") == "ec2 instance") {
                                         if (node.every(child => child.style('display') === 'none')) {
                                             return "/aws_ec2_application_load_balancer.svg"
                                         }
