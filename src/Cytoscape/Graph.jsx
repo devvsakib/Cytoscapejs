@@ -155,8 +155,8 @@ const Graph = () => {
                                 height: 30,
                                 // backgroundColor: hasChild ? "orange" : "green",
                                 "background-image": node => {
-                                    if (node.data("label") == "ec2 target group" && node.connectedEdges().length == (1 || 4)) {
-                                        console.log(node.connectedEdges());
+                                    if (node.data("label") == "ec2 target group" && !node.isParent()) {
+                                        console.log(node.parent());
                                         return "/aws_ec2_target_group.svg"
                                     }
                                     if (node.data("label") == "ec2 instance" && node.connectedEdges().length < 4) {
