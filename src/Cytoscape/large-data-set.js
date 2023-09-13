@@ -5244,6 +5244,7 @@ export const dummyData = {
             "iam_instance_profile_id": "AIPAJ2CCGV2NSEQK2UROI",
             "id": "i-082011b14e2429240",
             "image_id": "ami-0ad4ffe216bbbc97a",
+            // "icon": "aws_ec2_instance.svg",
             "instance_id": "i-082011b14e2429240",
             "instance_initiated_shutdown_behavior": "stop",
             "instance_lifecycle": "",
@@ -6493,12 +6494,14 @@ export const dummyData = {
         },
         {
             "id": "internet",
-            "label": "Internet"
+            "label": "Internet",
+            "icon": "internet.svg"
         },
         {
             "id": "subnet-07d095d724eecc167_combo",
             "label": "vpc subnet",
             "resource_type": "aws_vpc_subnet",
+            "icon": "vpcsubnet.svg",
             "properties": {
                 "_id": "64f670dc9b03bac8ef574edb",
                 "account_id": "430506864995",
@@ -6560,6 +6563,7 @@ export const dummyData = {
             "id": "subnet-0cb67551a1291d659_combo",
             "label": "vpc subnet",
             "resource_type": "aws_vpc_subnet",
+            "icon": "vpcsubnet.svg",
             "properties": {
                 "_id": "64f670dc9b03bac8ef574edc",
                 "account_id": "430506864995",
@@ -6617,11 +6621,11 @@ export const dummyData = {
             },
             "parentId": "vpc-019ec9d2c8c1afaa6_combo"
         },
-
         {
             "id": "subnet-0b361dc274153ea83_combo",
             "label": "vpc subnet",
             "resource_type": "aws_vpc_subnet",
+            "icon": "vpcsubnet.svg",
             "properties": {
                 "_id": "64f670dc9b03bac8ef574ede",
                 "account_id": "430506864995",
@@ -6683,6 +6687,7 @@ export const dummyData = {
             "id": "subnet-0c46186872ff61b83_combo",
             "label": "vpc subnet",
             "resource_type": "aws_vpc_subnet",
+            "icon": "vpcsubnet.svg",
             "properties": {
                 "_id": "64f670dc9b03bac8ef574ee1",
                 "account_id": "430506864995",

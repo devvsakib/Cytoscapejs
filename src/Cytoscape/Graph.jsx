@@ -145,16 +145,29 @@ const Graph = () => {
                 data &&
                 <CytoscapeComponent
                     cy={(cy) => {
-                        cy.on("click", handleClicked);
-                        // zooming sensivity to 0.1
+                        cy.on("dblclick", handleClicked);
                         cy.on('wheel', handleZooming);
                         cy.nodes().forEach((node) => {
                             const hasChild = node.connectedEdges().length > 4;
                             const size = Math.random() * (hasChild ? 10 : 20) + 30;
                             node.style({
-                                width: size,
-                                height: size,
-                                backgroundColor: hasChild ? "orange" : "green",
+                                width: 30,
+                                height: 30,
+                                // backgroundColor: hasChild ? "orange" : "green",
+                                "background-image": node => {
+                                    if (node.data("label") == "ec2 target group" && node.connectedEdges().length == (1 || 4)) {
+                                        console.log(node.connectedEdges());
+                                        return "/aws_ec2_target_group.svg"
+                                    }
+                                    if (node.data("label") == "ec2 instance" && node.connectedEdges().length < 4) {
+                                        return "/aws_ec2_instance.svg"
+                                    }
+                                    return "/" + node.data("icon")
+                                },
+                                "background-fit": "cover",
+                                shape: "square",
+                                "background-size": "contain",
+                                "background-opacity": 0,
                             });
                         })
                     }}
