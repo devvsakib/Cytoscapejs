@@ -589,6 +589,26 @@ export const dummyData = {
             "id": "5bacf347d6044932be70bdf003123961",
             "source": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5",
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-deepstreme/f561d81088db9c16"
+        },
+        {
+            "id": "5bacf347d6044932be70bdf003123961",
+            "source": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
+            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/non-prod-alb/a63ef38a45a01605"
+        },
+        {
+            "id": "5bacf347d6044932be70bdf003123961",
+            "source": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830",
+            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
+        },
+        {
+            "id": "5bacf347d6044932be70bdf003123961",
+            "source": "i-02b47925c032270f9",
+            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-api/bb6746e2de6c9830"
+        },
+        {
+            "id": "5bacf347d6044932be70bdf003123961",
+            "source": "i-082011b14e2429240",
+            "target": "i-02b47925c032270f9"
         }
     ],
     "nodes": [

@@ -12,8 +12,7 @@ cytoscape.use(cola);
 import { dummyData } from './large-data-set';
 
 const Graph = () => {
-    // const iconBaseUrl = "http://localhost:5173/"
-
+    const [cyto, setCyto] = useState(undefined);
     const [data, setData] = useState(null)
     function jsontocystocape(jsonData) {
         const nodes = jsonData.nodes.map(node => {
@@ -47,8 +46,8 @@ const Graph = () => {
         setData([...nodes, ...edges, ...parentNodes])
     }
     useEffect(() => {
-        jsontocystocape(dummyData)
-    }, [])
+        jsontocystocape(dummyData);
+    }, []);
 
     const layouts = {
         breadthfirst: {
@@ -74,10 +73,6 @@ const Graph = () => {
             edgeElasticity: 0.3,
             wheelSensitivity: .1,
         }
-    };
-    const getRandomWidth = () => {
-        // Generate a random width between, for example, 20 and 100
-        return Math.random() * 30
     };
     const cytoStyles = [
         {
@@ -108,7 +103,6 @@ const Graph = () => {
         {
             selector: "node",
             style: {
-                "background-color": "red",
                 label: "data(label)",
                 'border-radius': '0',
                 'overlay-opacity': 0
@@ -123,43 +117,48 @@ const Graph = () => {
         }
     ]
     const handleClicked = e => {
-        console.log(e.target.id());
-    };
-    const handleZooming = e => {
-        e.preventDefault();
-        if (e.originalEvent.deltaY > 0) {
-            cy.zoom({
-                level: cy.zoom() - 0.1,
-                renderedPosition: e.renderedPosition
-            });
-        } else {
-            cy.zoom({
-                level: cy.zoom() + 0.1,
-                renderedPosition: e.renderedPosition
-            });
+        const clickedNode = e.target;
+        console.log(clickedNode.id());
+        if (clickedNode.isParent() && clickedNode.descendants().length > 0) {
+            const childNodes = clickedNode.descendants();
+            const childVisible = childNodes.style("display") === "element";
+            childNodes.visible(!childVisible);
+            const childEdges = childNodes.connectedEdges();
+            childEdges.visible(!childVisible);
+            if (childVisible) {
+                childNodes.style("display", "none");
+            } else {
+                childNodes.style("display", "element");
+                clickedNode.style("background-opacity", 0);
+            }
         }
-    }
+    };
+
     return (
         <div>
             {
                 data &&
                 <CytoscapeComponent
                     cy={(cy) => {
+                        cy.on("click", e => e.target.id);
                         cy.on("dblclick", handleClicked);
-                        cy.on('wheel', handleZooming);
                         cy.nodes().forEach((node) => {
                             const hasChild = node.connectedEdges().length > 4;
                             const size = Math.random() * (hasChild ? 10 : 20) + 30;
                             node.style({
                                 width: 30,
                                 height: 30,
-                                // backgroundColor: hasChild ? "orange" : "green",
                                 "background-image": node => {
                                     if (node.data("label") == "ec2 target group" && !node.isParent()) {
-                                        console.log(node.parent());
                                         return "/aws_ec2_target_group.svg"
                                     }
-                                    if (node.data("label") == "ec2 instance" && node.connectedEdges().length < 4) {
+                                    if (node.data("label") == "ec2 application load balancer" && cy.nodes(':child').style('display', 'none')) {
+                                        return "/aws_ec2_application_load_balancer.svg"
+                                    }
+                                    if (node.data("label") == "ec2 instance" && node.isParent()) {
+                                        if (node.every(child => child.style('display') === 'none')) {
+                                            return "/aws_ec2_application_load_balancer.svg"
+                                        }
                                         return "/aws_ec2_instance.svg"
                                     }
                                     return "/" + node.data("icon")
@@ -168,9 +167,13 @@ const Graph = () => {
                                 shape: "square",
                                 "background-size": "contain",
                                 "background-opacity": 0,
+
                             });
-                        })
+                        });
+                        cy.nodes(':child').style('display', 'none');
                     }}
+                    panningEnabled={true}
+                    wheelSensitivity={0.2}
                     elements={data}
                     maxZoom={1.5}
                     minZoom={0.1}
