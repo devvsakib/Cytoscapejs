@@ -80,7 +80,7 @@ const Graph = () => {
             // Separation amount between nodes
             nodeSeparation: 1,
             // Node repulsion (non overlapping) multiplier
-            nodeRepulsion: node => 100000,
+            nodeRepulsion: node => 50000,
             // Ideal edge (non nested) length
             idealEdgeLength: edge => 50,
             // Divisor to compute edge forces
@@ -117,7 +117,7 @@ const Graph = () => {
                 width: 1,
                 lineColor: '#9b6b8b',
                 'overlay-opacity': 0,
-                "curve-style": "unbundled-bezier"
+                "curve-style": "taxi"
             },
         },
         {
@@ -183,7 +183,7 @@ const Graph = () => {
             clickedNode.style("background-image", backgroundImage);
             const layoutProperties = {
                 nodeRepulsion: node => 100000,
-                idealEdgeLength: edge => 100,
+                idealEdgeLength: edge => 200,
 
             };
         
