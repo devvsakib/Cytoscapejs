@@ -136,11 +136,6 @@ export const dummyData = {
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/k8s-esmsintegrationsi-650d30856e/fde7681bd6bfddf5"
         },
         {
-            "id": "9f2894591f554ee5b538d6feeef907f0",
-            "source": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
-            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
-        },
-        {
             "id": "9adbe2c2a97845f58d6f6a7e09a1f43b",
             "source": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-web3/ac55aea1d9a4c36d",
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
@@ -341,11 +336,6 @@ export const dummyData = {
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-web/7bf12813986c7551"
         },
         {
-            "id": "d0275cd669f149159b23f3e564869268",
-            "source": "i-0782a52729202a971",
-            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab"
-        },
-        {
             "id": "a0bf9f1aa85b4fe6b437dab26bc0e764",
             "source": "i-0782a52729202a971",
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-web3/ac55aea1d9a4c36d"
@@ -529,11 +519,6 @@ export const dummyData = {
             "id": "26b68ff3a9ff40808304278d66a60e06",
             "source": "i-0eaf8754513b9b004",
             "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-greneos-web/7bf12813986c7551"
-        },
-        {
-            "id": "2ef2df09fb1b4b07b13d28c6d0753547",
-            "source": "i-0eaf8754513b9b004",
-            "target": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab"
         },
         {
             "id": "0f01209f45f64975acdd3b191368cd4f",
@@ -2362,81 +2347,6 @@ export const dummyData = {
             "created_at": "2023-09-05T00:03:54.063000",
             "label": "ec2 target group",
             "ogid": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/k8s-argocd-argocdse-34f4a75c10/e9fa15f3861ca93e",
-            "comboId": "vpc-019ec9d2c8c1afaa6_combo"
-        },
-        {
-            "_id": "64f6706a1ee54413f3463f34",
-            "account_id": "430506864995",
-            "akas": [
-                "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab"
-            ],
-            "health_check_enabled": true,
-            "health_check_interval_seconds": 30,
-            "health_check_path": "/",
-            "health_check_port": "traffic-port",
-            "health_check_protocol": "HTTP",
-            "health_check_timeout_seconds": 5,
-            "healthy_threshold_count": 5,
-            "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
-            "icon": "aws_ec2_target_group.svg",
-            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
-            "load_balancer_arns": [
-                "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"
-            ],
-            "matcher_grpc_code": null,
-            "matcher_http_code": "200",
-            "name": "elb-tg-prod-app-web-web",
-            "partition": "aws",
-            "port": 80,
-            "protocol": "HTTP",
-            "region": "ap-south-1",
-            "tags_src": [],
-            "target_group_arn": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
-            "target_group_name": "elb-tg-prod-app-web-web",
-            "target_health_descriptions": [
-                {
-                    "HealthCheckPort": "80",
-                    "Target": {
-                        "AvailabilityZone": null,
-                        "Id": "i-0782a52729202a971",
-                        "Port": 80
-                    },
-                    "TargetHealth": {
-                        "Description": null,
-                        "Reason": "",
-                        "State": "healthy"
-                    }
-                },
-                {
-                    "HealthCheckPort": "80",
-                    "Target": {
-                        "AvailabilityZone": null,
-                        "Id": "i-0eaf8754513b9b004",
-                        "Port": 80
-                    },
-                    "TargetHealth": {
-                        "Description": null,
-                        "Reason": "",
-                        "State": "healthy"
-                    }
-                }
-            ],
-            "target_type": "instance",
-            "title": "elb-tg-prod-app-web-web",
-            "unhealthy_threshold_count": 2,
-            "urn": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
-            "vpc_id": "vpc-019ec9d2c8c1afaa6",
-            "integration_id": "430506864995",
-            "integration_type": "aws",
-            "resource_type": "aws_ec2_target_group",
-            "inventory_exc_id": "64f66fb40415081c589ca8d2",
-            "inventory_schedule_id": "64d0f465a366db71de8d50e2",
-            "user_id": "tejas@grenerobotics.com",
-            "root_user_id": "tejas@grenerobotics.com",
-            "updated_at": "2023-09-05T00:03:54.063000",
-            "created_at": "2023-09-05T00:03:54.063000",
-            "label": "ec2 target group",
-            "ogid": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
             "comboId": "vpc-019ec9d2c8c1afaa6_combo"
         },
         {
@@ -6342,7 +6252,6 @@ export const dummyData = {
             "iam_instance_profile_arn": "arn:aws:iam::430506864995:instance-profile/AccessRole",
             "iam_instance_profile_id": "AIPAIHLH3ERWNURQD67OU",
             "id": "i-0eaf8754513b9b004",
-            "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
             "image_id": "ami-09cbd9943cebdd51c",
             "instance_id": "i-0eaf8754513b9b004",
             "instance_initiated_shutdown_behavior": "stop",

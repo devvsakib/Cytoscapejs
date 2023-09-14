@@ -121,15 +121,11 @@ const Graph = () => {
         console.log(clickedNode.id());
 
         if (clickedNode.isParent()) {
-            // Check if there are any immediate child nodes
             const immediateChildren = clickedNode.children();
-
-            if (immediateChildren.length > 0) {
-                // Toggle visibility of immediate children
+            console.log(immediateChildren.length);
+            if (immediateChildren.length) {
                 const childVisible = immediateChildren.style("display") === "element";
                 immediateChildren.visible(!childVisible);
-
-                // Toggle visibility of edges connected to immediate children
                 const childEdges = immediateChildren.connectedEdges();
                 childEdges.visible(!childVisible);
 
@@ -139,12 +135,9 @@ const Graph = () => {
                     immediateChildren.style("display", "element");
                 }
             } else {
-                // No immediate children, expand nested parents if any
                 const nestedParents = clickedNode.descendants(":parent");
                 const nestedParentVisible = nestedParents.style("display") === "element";
                 nestedParents.visible(!nestedParentVisible);
-
-                // Toggle visibility of edges connected to nested parents
                 const nestedParentEdges = nestedParents.connectedEdges();
                 nestedParentEdges.visible(!nestedParentVisible);
 
@@ -164,7 +157,7 @@ const Graph = () => {
         if (node.data("label") === "ec2 instance" && !node.descendants(":visible").nonempty()) {
             return "/aws_ec2_instance.svg";
         }
-        if (node.data("label") === "ec2 target group" && !node.descendants(":visible").nonempty()) {
+        if (node.data("label") === "ec2 target group") {
             return "/aws_ec2_target_group.svg";
         }
         if (node.data("label") === "ec2 application load balancer" && !node.descendants(":visible").nonempty()) {
@@ -172,6 +165,8 @@ const Graph = () => {
         }
         return "/" + node.data("icon");
     };
+    
+    
     return (
         <div>
             {
@@ -187,7 +182,7 @@ const Graph = () => {
                                 width: 30,
                                 height: 30,
                                 "background-image": node => {
-                                    if (node.data("label") == "ec2 target group") {
+                                    if (node.data("label") == "ec2 target group" && !node.isParent()) {
                                         return "/aws_ec2_target_group.svg"
                                     }
                                     if (node.data("label") == "ec2 application load balancer") {
