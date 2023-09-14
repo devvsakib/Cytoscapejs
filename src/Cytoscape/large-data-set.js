@@ -2378,6 +2378,7 @@ export const dummyData = {
             "health_check_timeout_seconds": 5,
             "healthy_threshold_count": 5,
             "id": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:targetgroup/elb-tg-prod-app-web-web/e46760b8bc8077ab",
+            "icon": "aws_ec2_target_group.svg",
             "parent": "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a",
             "load_balancer_arns": [
                 "arn:aws:elasticloadbalancing:ap-south-1:430506864995:loadbalancer/app/elb-web/005054c15a8f4a1a"

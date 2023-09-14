@@ -119,21 +119,59 @@ const Graph = () => {
     const handleClicked = e => {
         const clickedNode = e.target;
         console.log(clickedNode.id());
-        if (clickedNode.isParent() && clickedNode.descendants().length > 0) {
-            const childNodes = clickedNode.descendants();
-            const childVisible = childNodes.style("display") === "element";
-            childNodes.visible(!childVisible);
-            const childEdges = childNodes.connectedEdges();
-            childEdges.visible(!childVisible);
-            if (childVisible) {
-                childNodes.style("display", "none");
+
+        if (clickedNode.isParent()) {
+            // Check if there are any immediate child nodes
+            const immediateChildren = clickedNode.children();
+
+            if (immediateChildren.length > 0) {
+                // Toggle visibility of immediate children
+                const childVisible = immediateChildren.style("display") === "element";
+                immediateChildren.visible(!childVisible);
+
+                // Toggle visibility of edges connected to immediate children
+                const childEdges = immediateChildren.connectedEdges();
+                childEdges.visible(!childVisible);
+
+                if (childVisible) {
+                    immediateChildren.style("display", "none");
+                } else {
+                    immediateChildren.style("display", "element");
+                }
             } else {
-                childNodes.style("display", "element");
-                clickedNode.style("background-opacity", 0);
+                // No immediate children, expand nested parents if any
+                const nestedParents = clickedNode.descendants(":parent");
+                const nestedParentVisible = nestedParents.style("display") === "element";
+                nestedParents.visible(!nestedParentVisible);
+
+                // Toggle visibility of edges connected to nested parents
+                const nestedParentEdges = nestedParents.connectedEdges();
+                nestedParentEdges.visible(!nestedParentVisible);
+
+                if (nestedParentVisible) {
+                    nestedParents.style("display", "none");
+                } else {
+                    nestedParents.style("display", "element");
+                }
             }
+            const backgroundImage = determineBackgroundImage(clickedNode);
+            clickedNode.style("background-image", backgroundImage);
         }
     };
 
+
+    const determineBackgroundImage = node => {
+        if (node.data("label") === "ec2 instance" && !node.descendants(":visible").nonempty()) {
+            return "/aws_ec2_instance.svg";
+        }
+        if (node.data("label") === "ec2 target group" && !node.descendants(":visible").nonempty()) {
+            return "/aws_ec2_target_group.svg";
+        }
+        if (node.data("label") === "ec2 application load balancer" && !node.descendants(":visible").nonempty()) {
+            return "/aws_ec2_application_load_balancer.svg";
+        }
+        return "/" + node.data("icon");
+    };
     return (
         <div>
             {
@@ -149,16 +187,13 @@ const Graph = () => {
                                 width: 30,
                                 height: 30,
                                 "background-image": node => {
-                                    if (node.data("label") == "ec2 target group" && !node.isParent()) {
+                                    if (node.data("label") == "ec2 target group") {
                                         return "/aws_ec2_target_group.svg"
                                     }
-                                    if (node.data("label") == "ec2 application load balancer" && cy.nodes(':child').style('display', 'none')) {
+                                    if (node.data("label") == "ec2 application load balancer") {
                                         return "/aws_ec2_application_load_balancer.svg"
                                     }
                                     if (node.data("label") == "ec2 instance") {
-                                        if (node.every(child => child.style('display') === 'none')) {
-                                            return "/aws_ec2_application_load_balancer.svg"
-                                        }
                                         return "/aws_ec2_instance.svg"
                                     }
                                     return "/" + node.data("icon")
