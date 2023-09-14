@@ -12,7 +12,6 @@ cytoscape.use(cola);
 import { dummyData } from './large-data-set';
 
 const Graph = () => {
-    const [nodeData, setNodeData] = useState(null);
     const [data, setData] = useState(null)
     function jsontocystocape(jsonData) {
         const nodes = jsonData.nodes.map(node => {
@@ -53,10 +52,6 @@ const Graph = () => {
         breadthfirst: {
             name: "breadthfirst"
         },
-        cose: {
-            name: "cose",
-            animate: false
-        },
         cola: {
             name: "cola",
             maxSimulationTime: 500,
@@ -68,10 +63,55 @@ const Graph = () => {
         },
         fcose: {
             name: "fcose",
-            animate: false,
-            nodeDimensionsIncludeLabels: true,
-            edgeElasticity: .2,
-            wheelSensitivity: .1,
+            quality: "default",
+            // Use random node positions at beginning of layout
+            // if this is set to false, then quality option must be "proof"
+            randomize: true,
+            animate: true,
+            animationDuration: 1000,
+            animationEasing: undefined,
+            fit: true,
+            // Padding around layout
+            padding: 30,
+            // Whether to include labels in node dimensions. Valid in "proof" quality
+            nodeDimensionsIncludeLabels: false,
+            // Whether or not simple nodes (non-compound nodes) are of uniform dimensions
+            uniformNodeDimensions: false,
+            // Whether to pack disconnected components - cytoscape-layout-utilities extension should be registered and initialized
+            packComponents: false,
+            step: "all",
+            // Separation amount between nodes
+            nodeSeparation: 6,
+            // Node repulsion (non overlapping) multiplier
+            nodeRepulsion: node => 100000,
+            // Ideal edge (non nested) length
+            idealEdgeLength: edge => 60,
+            // Divisor to compute edge forces
+            edgeElasticity: edge => 0.5,
+            // Nesting factor (multiplier) to compute ideal edge length for nested edges
+            nestingFactor: 0.3,
+               // For enabling tiling
+            tile: true,
+            tilingCompareBy: undefined,
+            // Represents the amount of the vertical space to put between the zero degree members during the tiling operation(can also be a function)
+            tilingPaddingVertical: 10,
+            // Represents the amount of the horizontal space to put between the zero degree members during the tiling operation(can also be a function)
+            tilingPaddingHorizontal: 100,
+            // Gravity force (constant)
+            gravity: 0.25,
+            // Gravity range (constant) for compounds
+            gravityRangeCompound: 1.5,
+            // Gravity force (constant) for compounds
+            gravityCompound: 1.0,
+            // Gravity range (constant)
+            gravityRange: 3.8,
+            // Initial cooling factor for incremental layout  
+            initialEnergyOnIncremental: 0.1,
+            fixedNodeConstraint: undefined,
+            alignmentConstraint: undefined,
+            relativePlacementConstraint: undefined,
+            ready: () => { }, // on layoutready
+            stop: () => { } // on layoutstop
         }
     };
     const cytoStyles = [
@@ -115,36 +155,38 @@ const Graph = () => {
     ]
 
     const handleClicked = e => {
-            const clickedNode = e.target;
-            if (clickedNode.isParent()) {
-                const immediateChildren = clickedNode.children();
-                if (immediateChildren.length) {
-                    const childVisible = immediateChildren.style("display") === "element";
-                    immediateChildren.visible(!childVisible);
-                    const childEdges = immediateChildren.connectedEdges();
-                    childEdges.visible(!childVisible);
 
-                    if (childVisible) {
-                        immediateChildren.style("display", "none");
-                    } else {
-                        immediateChildren.style("display", "element");
-                    }
+        const clickedNode = e.target;
+        if (clickedNode.isParent()) {
+            const immediateChildren = clickedNode.children();
+            if (immediateChildren.length) {
+                const childVisible = immediateChildren.style("display") === "element";
+                immediateChildren.visible(!childVisible);
+                const childEdges = immediateChildren.connectedEdges();
+                childEdges.visible(!childVisible);
+
+                if (childVisible) {
+                    immediateChildren.style("display", "none");
                 } else {
-                    const nestedParents = clickedNode.descendants(":parent");
-                    const nestedParentVisible = nestedParents.style("display") === "element";
-                    nestedParents.visible(!nestedParentVisible);
-                    const nestedParentEdges = nestedParents.connectedEdges();
-                    nestedParentEdges.visible(!nestedParentVisible);
-
-                    if (nestedParentVisible) {
-                        nestedParents.style("display", "none");
-                    } else {
-                        nestedParents.style("display", "element");
-                    }
+                    immediateChildren.style("display", "element");
                 }
-                const backgroundImage = determineBackgroundImage(clickedNode);
-                clickedNode.style("background-image", backgroundImage);
+            } else {
+                const nestedParents = clickedNode.descendants(":parent");
+                const nestedParentVisible = nestedParents.style("display") === "element";
+                nestedParents.visible(!nestedParentVisible);
+                const nestedParentEdges = nestedParents.connectedEdges();
+                nestedParentEdges.visible(!nestedParentVisible);
+
+                if (nestedParentVisible) {
+                    nestedParents.style("display", "none");
+                } else {
+                    nestedParents.style("display", "element");
+                }
             }
+            const backgroundImage = determineBackgroundImage(clickedNode);
+            clickedNode.style("background-image", backgroundImage);
+            e.cy.layout(layouts["fcose"]).run();
+        }
     };
 
     const determineBackgroundImage = node => {
@@ -192,12 +234,14 @@ const Graph = () => {
                             });
                         });
                         cy.nodes(':child').style('display', 'none');
+
                     }}
                     panningEnabled={true}
                     wheelSensitivity={0.2}
                     elements={data}
-                    maxZoom={1.5}
-                    minZoom={0.1}
+                    zoomingEnabled={true}
+                    userZoomingEnabled={true}
+                    minZoom={.5}
                     layout={layouts["fcose"]}
                     className='mx-2 h-[80vh]'
                     stylesheet={cytoStyles}
