@@ -12,7 +12,7 @@ cytoscape.use(cola);
 import { dummyData } from './large-data-set';
 
 const Graph = () => {
-    const [cyto, setCyto] = useState(undefined);
+    const [nodeData, setNodeData] = useState(null);
     const [data, setData] = useState(null)
     function jsontocystocape(jsonData) {
         const nodes = jsonData.nodes.map(node => {
@@ -70,9 +70,8 @@ const Graph = () => {
             name: "fcose",
             animate: false,
             nodeDimensionsIncludeLabels: true,
-            edgeElasticity: 0.3,
+            edgeElasticity: .2,
             wheelSensitivity: .1,
-            idealEdgeLength: 10,
         }
     };
     const cytoStyles = [
@@ -114,42 +113,39 @@ const Graph = () => {
             }
         }
     ]
+
     const handleClicked = e => {
-        const clickedNode = e.target;
-        console.log(clickedNode.id());
+            const clickedNode = e.target;
+            if (clickedNode.isParent()) {
+                const immediateChildren = clickedNode.children();
+                if (immediateChildren.length) {
+                    const childVisible = immediateChildren.style("display") === "element";
+                    immediateChildren.visible(!childVisible);
+                    const childEdges = immediateChildren.connectedEdges();
+                    childEdges.visible(!childVisible);
 
-        if (clickedNode.isParent()) {
-            const immediateChildren = clickedNode.children();
-            console.log(immediateChildren.length);
-            if (immediateChildren.length) {
-                const childVisible = immediateChildren.style("display") === "element";
-                immediateChildren.visible(!childVisible);
-                const childEdges = immediateChildren.connectedEdges();
-                childEdges.visible(!childVisible);
-
-                if (childVisible) {
-                    immediateChildren.style("display", "none");
+                    if (childVisible) {
+                        immediateChildren.style("display", "none");
+                    } else {
+                        immediateChildren.style("display", "element");
+                    }
                 } else {
-                    immediateChildren.style("display", "element");
-                }
-            } else {
-                const nestedParents = clickedNode.descendants(":parent");
-                const nestedParentVisible = nestedParents.style("display") === "element";
-                nestedParents.visible(!nestedParentVisible);
-                const nestedParentEdges = nestedParents.connectedEdges();
-                nestedParentEdges.visible(!nestedParentVisible);
+                    const nestedParents = clickedNode.descendants(":parent");
+                    const nestedParentVisible = nestedParents.style("display") === "element";
+                    nestedParents.visible(!nestedParentVisible);
+                    const nestedParentEdges = nestedParents.connectedEdges();
+                    nestedParentEdges.visible(!nestedParentVisible);
 
-                if (nestedParentVisible) {
-                    nestedParents.style("display", "none");
-                } else {
-                    nestedParents.style("display", "element");
+                    if (nestedParentVisible) {
+                        nestedParents.style("display", "none");
+                    } else {
+                        nestedParents.style("display", "element");
+                    }
                 }
+                const backgroundImage = determineBackgroundImage(clickedNode);
+                clickedNode.style("background-image", backgroundImage);
             }
-            const backgroundImage = determineBackgroundImage(clickedNode);
-            clickedNode.style("background-image", backgroundImage);
-        }
     };
-
 
     const determineBackgroundImage = node => {
         const label = node.data("label");
@@ -164,19 +160,15 @@ const Graph = () => {
         }
         return "/" + node.data("icon");
     };
-    
-    
+
     return (
-        <div>
+        <div className='w-full'>
             {
                 data &&
                 <CytoscapeComponent
                     cy={(cy) => {
-                        cy.on("click", e => e.target.id);
                         cy.on("dblclick", handleClicked);
                         cy.nodes().forEach((node) => {
-                            const hasChild = node.connectedEdges().length > 4;
-                            const size = Math.random() * (hasChild ? 10 : 20) + 30;
                             node.style({
                                 width: 30,
                                 height: 30,
@@ -211,7 +203,6 @@ const Graph = () => {
                     stylesheet={cytoStyles}
                 />
             }
-            {/* <div className='mx-2 h-[80vh]' ref={ref}></div> */}
         </div>
     );
 };
