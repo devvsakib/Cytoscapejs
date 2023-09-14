@@ -67,46 +67,42 @@ const Graph = () => {
             // Use random node positions at beginning of layout
             // if this is set to false, then quality option must be "proof"
             randomize: true,
-            animate: true,
-            animationDuration: 1000,
-            animationEasing: undefined,
             fit: true,
             // Padding around layout
             padding: 30,
             // Whether to include labels in node dimensions. Valid in "proof" quality
             nodeDimensionsIncludeLabels: false,
             // Whether or not simple nodes (non-compound nodes) are of uniform dimensions
-            uniformNodeDimensions: false,
+            uniformNodeDimensions: true,
             // Whether to pack disconnected components - cytoscape-layout-utilities extension should be registered and initialized
             packComponents: false,
             step: "all",
             // Separation amount between nodes
-            nodeSeparation: 6,
+            nodeSeparation: 1,
             // Node repulsion (non overlapping) multiplier
             nodeRepulsion: node => 100000,
             // Ideal edge (non nested) length
-            idealEdgeLength: edge => 60,
+            idealEdgeLength: edge => 50,
             // Divisor to compute edge forces
-            edgeElasticity: edge => 0.5,
-            // Nesting factor (multiplier) to compute ideal edge length for nested edges
-            nestingFactor: 0.3,
-               // For enabling tiling
+            edgeElasticity:1,
+            numIter: 2500,
+            nestingFactor: .1,
+            // For enabling tiling
             tile: true,
-            tilingCompareBy: undefined,
             // Represents the amount of the vertical space to put between the zero degree members during the tiling operation(can also be a function)
             tilingPaddingVertical: 10,
             // Represents the amount of the horizontal space to put between the zero degree members during the tiling operation(can also be a function)
-            tilingPaddingHorizontal: 100,
+            tilingPaddingHorizontal: 10,
             // Gravity force (constant)
-            gravity: 0.25,
+            gravity: 0.50,
             // Gravity range (constant) for compounds
             gravityRangeCompound: 1.5,
             // Gravity force (constant) for compounds
             gravityCompound: 1.0,
             // Gravity range (constant)
-            gravityRange: 3.8,
+            gravityRange: 10,
             // Initial cooling factor for incremental layout  
-            initialEnergyOnIncremental: 0.1,
+            initialEnergyOnIncremental: 0.3,
             fixedNodeConstraint: undefined,
             alignmentConstraint: undefined,
             relativePlacementConstraint: undefined,
@@ -185,7 +181,14 @@ const Graph = () => {
             }
             const backgroundImage = determineBackgroundImage(clickedNode);
             clickedNode.style("background-image", backgroundImage);
-            e.cy.layout(layouts["fcose"]).run();
+            const layoutProperties = {
+                nodeRepulsion: node => 100000,
+                idealEdgeLength: edge => 100,
+
+            };
+        
+            // Apply the modified layout properties and run the layout
+            e.cy.layout({ ...layouts["fcose"], ...layoutProperties }).run();
         }
     };
 
