@@ -72,6 +72,7 @@ const Graph = () => {
             nodeDimensionsIncludeLabels: true,
             edgeElasticity: 0.3,
             wheelSensitivity: .1,
+            idealEdgeLength: 10,
         }
     };
     const cytoStyles = [
@@ -79,11 +80,8 @@ const Graph = () => {
             selector: 'edge',
             style: {
                 width: 1,
-                // lineColor: '#3beb2b',
-                targetArrowShape: 'triangle',
-                curveStyle: 'bezier',
+                lineColor: '#9b6b8b',
                 'overlay-opacity': 0,
-                "target-arrow-shape": "triangle",
                 "curve-style": "unbundled-bezier"
             },
         },
@@ -154,13 +152,14 @@ const Graph = () => {
 
 
     const determineBackgroundImage = node => {
-        if (node.data("label") === "ec2 instance" && !node.descendants(":visible").nonempty()) {
+        const label = node.data("label");
+        if (label === "ec2 instance" && !node.descendants(":visible").nonempty()) {
             return "/aws_ec2_instance.svg";
         }
-        if (node.data("label") === "ec2 target group") {
+        if (label === "ec2 target group" && !node.descendants(":visible").nonempty()) {
             return "/aws_ec2_target_group.svg";
         }
-        if (node.data("label") === "ec2 application load balancer" && !node.descendants(":visible").nonempty()) {
+        if (label === "ec2 application load balancer" && !node.descendants(":visible").nonempty()) {
             return "/aws_ec2_application_load_balancer.svg";
         }
         return "/" + node.data("icon");
@@ -182,7 +181,7 @@ const Graph = () => {
                                 width: 30,
                                 height: 30,
                                 "background-image": node => {
-                                    if (node.data("label") == "ec2 target group" && !node.isParent()) {
+                                    if (node.data("label") == "ec2 target group") {
                                         return "/aws_ec2_target_group.svg"
                                     }
                                     if (node.data("label") == "ec2 application load balancer") {
